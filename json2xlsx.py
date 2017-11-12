@@ -1,16 +1,16 @@
 import json
 from openpyxl import Workbook
-menuCourses = json.loads(open("menu.json").read())
+categories = json.loads(open("menu.json").read())
 
 wb = Workbook()
 ws = wb.create_sheet("categories")
-for menuCourse in menuCourses:
-    menuCourseName = menuCourse['menuName']
-    row = [menuCourseName]
+for category in categories:
+    categoryName = category['menuName']
+    row = [categoryName]
     sheet = wb.get_sheet_by_name('categories')
     sheet.append(row)
-    ws = wb.create_sheet(title=menuCourseName)
-    for menuItem in menuCourse['menuItems']:
+    ws = wb.create_sheet(title=categoryName)
+    for menuItem in category['menuItems']:
         row = [menuItem['menuItemName'], menuItem['menuItemDescription']]
         ws.append(row)
 wb.save('menu.xlsx')

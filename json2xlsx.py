@@ -5,12 +5,12 @@ menuCourses = json.loads(open("menu.json").read())
 wb = Workbook()
 ws = wb.create_sheet("categories")
 for menuCourse in menuCourses:
-    menuCourseName = menuCourse['menuCourseName']
+    menuCourseName = menuCourse['menuName']
     row = [menuCourseName]
     sheet = wb.get_sheet_by_name('categories')
     sheet.append(row)
     ws = wb.create_sheet(title=menuCourseName)
     for menuItem in menuCourse['menuItems']:
-        row = [menuItem['menuItemName'], menuItem['menuItemButtonName']]
+        row = [menuItem['menuItemName'], menuItem['menuItemDescription']]
         ws.append(row)
-    wb.save('menu.xlsx')
+wb.save('menu.xlsx')
